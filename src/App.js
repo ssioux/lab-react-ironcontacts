@@ -14,23 +14,46 @@ function App() {
 
     const copyFamousList = [...famousList];
 
-    
-    copyFamousList.includes(newPerson) === false && copyFamousList.push(newPerson)
+    copyFamousList.includes(newPerson) === false &&
+      copyFamousList.push(newPerson);
 
-
-
-    setFamousList(copyFamousList)
+    setFamousList(copyFamousList);
     // if (copyFamousList.includes(newPerson) === false) {
     //   copyFamousList.push(newPerson);
     //  setFamousList(copyFamousList);
     //  }
+  };
 
+  const sortPopularity = () => {
+    const copyFamousList = famousList.map((eachElem) => eachElem);
+
+    copyFamousList.sort((elem1, elem2) => {
+      return elem1.popularity > elem2.popularity ? 1 : -1;
+      // if (elem1.popularity > elem2.popularity) {
+      //    return 1
+      // } else {
+      //     return -1
+      // }
+    });
+    setFamousList(copyFamousList);
+  };
+
+  const sortName = () => {
+    const copyFamousList = famousList.map((eachElem) => eachElem);
+
+    copyFamousList.sort((elem1, elem2) => {
+      return elem1.name > elem2.name ? 1 : -1;
+    });
+    setFamousList(copyFamousList);
   };
 
   return (
     <div className="App">
       <h1>IronContacts</h1>
       <button onClick={randomPerson}>Add Random Contact</button>
+      <button onClick={sortPopularity}>Sort By Popularity</button>
+      <button onClick={sortName}>Sort By name</button>
+
       <table style={{ margin: "20px 0px 0px 200px", width: "40%" }}>
         <thead>
           <tr>
@@ -51,9 +74,7 @@ function App() {
                 </td>
                 <td>{eachPerson.name}</td>
                 <td>{eachPerson.popularity}</td>
-                <td>
-                  {eachPerson.wonOscar === true ? <p>🏆</p> : <p></p>}
-                </td>
+                <td>{eachPerson.wonOscar === true ? <p>🏆</p> : <p></p>}</td>
                 <td>{eachPerson.wonEmmy}</td>
               </tr>
             );
