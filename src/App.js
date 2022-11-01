@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import storedContacts from "./contacts.json";
+import "./App.css";
+
+let contactsArr = storedContacts;
+const firstFiveContacts = contactsArr.slice(0, 5);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <table style={{ margin: "20px 0px 0px 200px", width: "40%" }}>
+        <thead>
+          <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Popularity</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {firstFiveContacts.map((eachPerson) => {
+            return (
+              <tr key={eachPerson.id}>
+                <td>
+                  <img src={eachPerson.pictureUrl} alt="" width="80px" />
+                </td>
+                <td>{eachPerson.name}</td>
+                <td>{eachPerson.popularity}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
