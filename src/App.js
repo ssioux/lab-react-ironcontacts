@@ -41,11 +41,32 @@ function App() {
   const sortName = () => {
     const copyFamousList = famousList.map((eachElem) => eachElem);
 
+
     copyFamousList.sort((elem1, elem2) => {
       return elem1.name > elem2.name ? 1 : -1;
     });
     setFamousList(copyFamousList);
   };
+
+  const deleteFamous = (index) => {
+    
+
+    const copyFamousList = famousList.map((eachElem) => eachElem);
+
+    // con index
+    copyFamousList.forEach((eachFamous, copyIndex) =>{
+      // console.log(copyIndex)
+      copyFamousList.indexOf(eachFamous) === index && copyFamousList.splice(index, 1)
+    })
+
+     
+
+    
+
+    setFamousList(copyFamousList) 
+
+
+  }
 
   return (
     <div className="App">
@@ -62,11 +83,12 @@ function App() {
             <th>Popularity</th>
             <th>Won Oscar</th>
             <th>Won Emmy</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          {famousList.map((eachPerson) => {
+          {famousList.map((eachPerson, index) => {
             return (
               <tr key={eachPerson.id}>
                 <td>
@@ -76,6 +98,7 @@ function App() {
                 <td>{eachPerson.popularity}</td>
                 <td>{eachPerson.wonOscar === true ? <p>🏆</p> : <p></p>}</td>
                 <td>{eachPerson.wonEmmy}</td>
+                <td><button onClick={()=> deleteFamous(index)}>Delete</button></td>
               </tr>
             );
           })}
