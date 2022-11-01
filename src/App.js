@@ -13,6 +13,8 @@ function App() {
             <th>Picture</th>
             <th>Name</th>
             <th>Popularity</th>
+            <th>Won Oscar</th>
+            <th>Won Emmy</th>
           </tr>
         </thead>
 
@@ -25,6 +27,8 @@ function App() {
                 </td>
                 <td>{eachPerson.name}</td>
                 <td>{eachPerson.popularity}</td>
+                <td>{eachPerson.wonOscar === true ? <p>trophy</p>: <p></p>}</td>
+                <td>{eachPerson.wonEmmy}</td>
               </tr>
             );
           })}
